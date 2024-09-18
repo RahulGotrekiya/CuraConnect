@@ -10,9 +10,12 @@
   <body>
 
     <!--header-->
+
     <?php include ('includes/header.php'); ?>
+    
     <!--header end-->
 
+    <!--login section-->
 
     <section class="login-section">
       <center>
@@ -86,5 +89,11 @@
         </div>
       </center>
     </section>
+
+    <!--login section end-->
+
+    <!--footer-->
+    <?php include ('includes/footer.php'); ?>
+    <!--footer end-->
   </body>
 </html>

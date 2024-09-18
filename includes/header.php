@@ -3,7 +3,7 @@
     <header>
       <div class="full-container">
         <div class="logo">
-          <a href="#"><img src="assets/images/logo.png" alt="CuraConnect" /></a>
+          <a href="index.php"><img src="assets/images/logo.png" alt="CuraConnect" /></a>
         </div>
         <div class="header-links">
           <ul class="nav-links">

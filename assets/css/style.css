@@ -100,4 +100,16 @@ td {
   transition: 0.5s;
 }
 
-/*login page end*/
+/* login page end*/
+
+/* signup page */
+
+.td-btn {
+  margin: 2px;
+}
+
+.td-btn input {
+  margin: 15px 0;
+  width: 98%;
+}
+/* signup page end */

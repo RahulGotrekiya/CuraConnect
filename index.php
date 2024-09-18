@@ -10,7 +10,9 @@
   <body>
 
     <!--header-->
+
     <?php include ('includes/header.php'); ?>
+
     <!--header end-->
 
     <!--main content-->
@@ -28,5 +30,9 @@
     </section>
 
     <!--main content end-->
+
+    <!--footer-->
+    <?php include ('includes/footer.php'); ?>
+    <!--footer end-->
   </body>
 </html>

@@ -16,6 +16,7 @@
   --primary-light: #d8ebfa;
   --btn-txt: #306bab;
   --primary-dark: #444546;
+  --primary-hover: #116cc2;
 }
 
 a {
@@ -38,23 +39,38 @@ h2 {
   letter-spacing: 1px;
 }
 
-.common-btn {
+.common-btn,
+.common-light-btn {
+  width: 100%;
   color: #fff;
   background-color: var(--primary-color);
-  padding: 10px 30px;
+  padding: 8px 20px;
   border-radius: 4px;
+  font-size: 16px;
   cursor: pointer;
   border: none;
   box-shadow: 0 3px 5px 0 rgba(57, 108, 240, 0.3);
 }
 
-.common-btn:hover {
+.common-light-btn {
   color: var(--btn-txt);
-  font-weight: 600;
   background-color: var(--primary-light);
+  box-shadow: none;
 }
 
-.common-btn:active {
+.common-light-btn:hover {
+  color: #fff;
+  box-shadow: 0 3px 5px 0 rgba(57, 108, 240, 0.3);
+}
+
+.common-btn:hover,
+.common-light-btn:hover {
+  font-weight: 600;
+  background-color: var(--primary-hover);
+}
+
+.common-btn:active,
+.common-light-btn:active {
   transform: scale(0.96);
 }
 
