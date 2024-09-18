@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CuraConnect</title>
     <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/style-common.css" rel="stylesheet" />
   </head>
   <body>
 

@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.4s;
+  letter-spacing: 0.32px;
+  line-height: 1.5;
+}
+
+:root {
+  --primary-color: #0a76d8;
+  --primary-light: #d8ebfa;
+  --btn-txt: #306bab;
+  --primary-dark: #444546;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--btn-txt);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 45px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+
+.common-btn {
+  color: #fff;
+  background-color: var(--primary-color);
+  padding: 10px 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 3px 5px 0 rgba(57, 108, 240, 0.3);
+}
+
+.common-btn:hover {
+  color: var(--btn-txt);
+  font-weight: 600;
+  background-color: var(--primary-light);
+}
+
+.common-btn:active {
+  transform: scale(0.96);
+}
+
+body {
+  background-color: #f6f7fa;
+}
+
+.input-text {
+  border: 1px solid #e9ecef;
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  appearance: none;
+  outline: none;
+  border-radius: 0.25rem;
+}
+
+.input-text:hover {
+  background-color: rgb(250, 250, 250);
+  transition: 0.2s;
+}
+
+.input-text:focus {
+  border: 1px solid rgb(10, 118, 216);
+  transition: 0.2s;
+}
+
+.input-text::placeholder {
+  font-family: "Inter", sans-serif;
+}
+
+.sub-text {
+  font-size: 15px;
+  color: rgb(138, 138, 138);
+}
