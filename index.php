@@ -3,31 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
+    <title>CuraConnect</title>
     <link href="assets/css/style.css" rel="stylesheet" />
   </head>
   <body>
-    <!--header start -->
 
-    <header>
-      <div class="full-container">
-        <div class="logo">
-          <a href="#"><img src="assets/images/logo.png" alt="CuraConnect" /></a>
-        </div>
-        <div class="header-links">
-          <ul class="nav-links">
-            <li><a href="login.php">login</a></li>
-            <li><a href="signup.php">register</a></li>
-          </ul>
-        </div>
-      </div>
-    </header>
-
-    <!--header end -->
+    <!--header-->
+    <?php include ('includes/header.php'); ?>
+    <!--header end-->
 
     <!--main content-->
 
-    <div class="main-content">
+    <section class="main-content">
       <h1>Avoid Hassles & Delays.</h1>
       <p>
         How is health today, Sounds like not good! <br />
@@ -37,7 +24,7 @@
         now.
       </p>
       <a href="login.php"> <div class="common-btn">Make Appointment</div></a>
-    </div>
+    </section>
 
     <!--main content end-->
   </body>
