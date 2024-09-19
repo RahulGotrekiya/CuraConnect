@@ -17,7 +17,7 @@
     
   <!--header end-->
 
-  <!--login section-->
+  <!--signup section-->
 
   <section class="login-section">
     <center>
@@ -87,7 +87,7 @@
     </center>
   </section>
 
-  <!--login section end-->
+  <!--signup section end-->
 
     <!--footer-->
     <?php include ('includes/footer.php'); ?>

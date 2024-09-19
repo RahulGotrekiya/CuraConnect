@@ -61,7 +61,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <br />
+                  <td colspan="2"><?php echo $error ?></td>
                   </td>
                 </tr>
                 <tr>
