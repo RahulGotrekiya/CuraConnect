@@ -13,31 +13,38 @@
 
   <!--header-->
 
-  <?php include('includes/header.php');
+  <?php
+  include('includes/header.php');
+
+  // learn from w3schools.com
+  // Unset all the server side variables
 
   include('includes/connection.php');
 
-
   session_start();
 
-  $_SESSION["user"] = "";
-  $_SESSION["usertype"] = "";
+  $_SESSION['user'] = '';
+  $_SESSION['usertype'] = '';
 
+  // Set the new timezone
   date_default_timezone_set('Asia/Kolkata');
-  $_SESSION["date"] = date('Y-m-d');
+  $date = date('Y-m-d');
 
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION["personal"] = [
+  $_SESSION['date'] = $date;
+
+  if ($_POST) {
+    $_SESSION['personal'] = array(
       'fname' => $_POST['fname'],
       'lname' => $_POST['lname'],
       'address' => $_POST['address'],
-      'dob' => $_POST['dob'],
-    ];
+      'dob' => $_POST['dob']
+    );
 
-
-    header("Location: create-account.php");
-    exit();
+    print_r($_SESSION['personal']);
+    header('location: create-account.php');
   }
+
+
 
   ?>
 

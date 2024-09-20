@@ -13,40 +13,70 @@
 
   <?php
 
-  // include database
-  include('connection.php');
-
   // include header file
   include('includes/header.php');
 
-  // Initialize error variable
-  $error = '';
+  // include database
+  include('includes/connection.php');
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  session_start();
+
+  $_SESSION['user'] = '';
+  $_SESSION['usertype'] = '';
+
+  // Set the new timezone
+  date_default_timezone_set('Asia/Kolkata');
+  $date = date('Y-m-d');
+
+  $_SESSION['date'] = $date;
+
+  if ($_POST) {
     $email = $_POST['useremail'];
     $password = $_POST['userpassword'];
 
-    // Prepare and execute the statement
-    $stmt = $conn->prepare("SELECT ppassword FROM users WHERE email = ? AND usertype = 'p'");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $error = '<label for="promter" class="form-label"></label>';
 
-    if ($result->num_rows > 0) {
-      $user = $result->fetch_assoc();
-      // Compare the plain-text password
-      if ($password === $user['ppassword']) {
-        echo "Login successful!";
-        // Redirect or start a session here
-      } else {
-        $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+    $result = $database->query("select * from users where email='$email'");
+    if ($result->num_rows == 1) {
+      $utype = $result->fetch_assoc()['usertype'];
+      if ($utype == 'p') {
+        $checker = $database->query("select * from patient where pemail='$email' and ppassword='$password'");
+        if ($checker->num_rows == 1) {
+          //   Patient dashbord
+          $_SESSION['user'] = $email;
+          $_SESSION['usertype'] = 'p';
+
+          header('location: patient/index.php');
+        } else {
+          $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Invalid email or password, Please try again!</label>';
+        }
+      } elseif ($utype == 'a') {
+        $checker = $database->query("select * from admin where aemail='$email' and apassword='$password'");
+        if ($checker->num_rows == 1) {
+          //   Admin dashbord
+          $_SESSION['user'] = $email;
+          $_SESSION['usertype'] = 'a';
+
+          header('location: admin/index.php');
+        } else {
+          $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Invalid email or password, Please try again!</label>';
+        }
+      } elseif ($utype == 'd') {
+        $checker = $database->query("select * from doctor where docemail='$email' and docpassword='$password'");
+        if ($checker->num_rows == 1) {
+          //   doctor dashbord
+          $_SESSION['user'] = $email;
+          $_SESSION['usertype'] = 'd';
+          header('location: doctor/index.php');
+        } else {
+          $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Invalid email or password, Please try again!</label>';
+        }
       }
     } else {
-      $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">No account found for this email.</label>';
+      $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">We cant found any account for this email.         </label>';
     }
-
-    $stmt->close();
-    $conn->close();
+  } else {
+    $error = '<label for="promter" class="form-label">&nbsp;</label>';
   }
 
   ?>
@@ -93,8 +123,7 @@
                 </td>
               </tr>
               <tr>
-                <td>
-                <td colspan="2"><?php echo $error ?></td>
+                <td colspan="2"><br><?php echo $error ?></td>
                 </td>
               </tr>
               <tr>

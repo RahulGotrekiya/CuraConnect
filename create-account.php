@@ -13,62 +13,58 @@
 
   <!--header-->
 
-  <?php include('includes/header.php'); ?>
-
-  <?php include('includes/connection.php');
+  <?php
+  include('includes/header.php');
+  include('includes/connection.php');
 
   session_start();
 
-  // Clear existing session variables
-  $_SESSION["user"] = "";
-  $_SESSION["usertype"] = "";
+  $_SESSION['user'] = '';
+  $_SESSION['usertype'] = '';
 
-  // Set the timezone
+  // Set the new timezone
   date_default_timezone_set('Asia/Kolkata');
-  $_SESSION["date"] = date('Y-m-d');
+  $date = date('Y-m-d');
 
-  // Import database connection
-  include("connection.php");
+  $_SESSION['date'] = $date;
 
   if ($_POST) {
-    // Retrieve personal information from session
+    $result = $database->query('select * from users');
+
     $fname = $_SESSION['personal']['fname'];
     $lname = $_SESSION['personal']['lname'];
-    $name = $fname . " " . $lname;
+    $name = $fname . ' ' . $lname;
     $address = $_SESSION['personal']['address'];
-    $nic = $_SESSION['personal']['nic'];
     $dob = $_SESSION['personal']['dob'];
     $email = $_POST['newemail'];
     $tele = $_POST['tele'];
     $newpassword = $_POST['newpassword'];
     $cpassword = $_POST['cpassword'];
 
-    // Check if passwords match
-    if ($newpassword === $cpassword) {
-      // Check if email already exists
-      $result = $database->query("SELECT * FROM user WHERE email='$email'");
-      if ($result->num_rows === 1) {
+    if ($newpassword == $cpassword) {
+      $result = $database->query("select * from users where email='$email';");
+      if ($result->num_rows == 1) {
         $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Already have an account for this Email address.</label>';
       } else {
-        // Insert new patient record
-        $database->query("INSERT INTO patient (pemail, pname, ppassword, paddress, pdob, ptel) VALUES ('$email', '$name', '$newpassword', '$address', '$dob', '$tele')");
-        // Insert new web user record
-        $database->query("INSERT INTO user (email, usertype) VALUES ('$email', 'p')");
+        $database->query("insert into patient(pemail, pname, ppassword, paddress, pdob, ptel) values('$email', '$name', '$newpassword', '$address', '$dob', '$tele');");
+        $database->query("insert into users values('$email','p')");
 
-        // Set session variables for user login
-        $_SESSION["user"] = $email;
-        $_SESSION["usertype"] = "p";
-        $_SESSION["username"] = $fname;
+        print_r("insert into patient values($pid, '$email', '$fname', '$lname', '$newpassword', '$address', '$dob', '$tele');");
+        $_SESSION['user'] = $email;
+        $_SESSION['usertype'] = 'p';
+        $_SESSION['username'] = $fname;
 
         header('Location: patient/index.php');
-        exit(); // Ensure no further code is executed after redirect
+        $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;"></label>';
       }
     } else {
-      $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Password does not match :) Please try again...</label>';
+      $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Password does not match, Please Try again!</label>';
     }
   } else {
+    // header('location: signup.php');
     $error = '<label for="promter" class="form-label"></label>';
   }
+
   ?>
 
 
@@ -111,8 +107,7 @@
                     type="tel"
                     name="tele"
                     class="input-text"
-                    placeholder="Ex: 9123456789"
-                    pattern="[6-9][0-9]{9}" />
+                    placeholder="Ex: 9123456789" />
                 </td>
               </tr>
               <tr>
@@ -146,25 +141,21 @@
                     placeholder="Conform Password"
                     required />
                 </td>
-              </tr>
-
               <tr>
-                <td colspan="2"><?php echo $error ?></td>
+                <td colspan="2"><br><?php echo $error ?></td>
               </tr>
-
-              <tr>
-                <td class="td-btn">
-                  <input
-                    type="reset"
-                    value="Reset"
-                    class="login-btn common-light-btn" />
-                </td>
-                <td class="td-btn">
-                  <input
-                    type="submit"
-                    value="Next"
-                    class="login-btn common-btn" />
-                </td>
+              <td class="td-btn">
+                <input
+                  type="reset"
+                  value="Reset"
+                  class="login-btn common-light-btn" />
+              </td>
+              <td class="td-btn">
+                <input
+                  type="submit"
+                  value="Next"
+                  class="login-btn common-btn" />
+              </td>
               </tr>
               <tr>
                 <td colspan="2">
