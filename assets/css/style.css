@@ -75,6 +75,12 @@ td {
   text-align: center;
 }
 
+.form-label {
+  color: rgb(44, 44, 44);
+  text-align: left;
+  font-size: 14px;
+}
+
 .label-td {
   text-align: left;
   padding-top: 10px;

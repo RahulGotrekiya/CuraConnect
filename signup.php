@@ -13,8 +13,34 @@
 
   <!--header-->
 
-  <?php include ('includes/header.php'); ?>
-    
+  <?php include('includes/header.php');
+
+  include('includes/connection.php');
+
+
+  session_start();
+
+  $_SESSION["user"] = "";
+  $_SESSION["usertype"] = "";
+
+  date_default_timezone_set('Asia/Kolkata');
+  $_SESSION["date"] = date('Y-m-d');
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_SESSION["personal"] = [
+      'fname' => $_POST['fname'],
+      'lname' => $_POST['lname'],
+      'address' => $_POST['address'],
+      'dob' => $_POST['dob'],
+    ];
+
+
+    header("Location: create-account.php");
+    exit();
+  }
+
+  ?>
+
   <!--header end-->
 
   <!--signup section-->
@@ -89,9 +115,9 @@
 
   <!--signup section end-->
 
-    <!--footer-->
-    <?php include ('includes/footer.php'); ?>
-    <!--footer end-->
+  <!--footer-->
+  <?php include('includes/footer.php'); ?>
+  <!--footer end-->
 </body>
 
 </html>
