@@ -13,10 +13,12 @@
 
 :root {
   --primary-color: #0a76d8;
+  --secondary-dark: #161c2d;
   --primary-light: #d8ebfa;
   --btn-txt: #306bab;
   --primary-dark: #444546;
   --primary-hover: #116cc2;
+  --subtext-color: #8492a6;
 }
 
 a {
