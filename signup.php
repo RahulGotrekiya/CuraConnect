@@ -16,9 +16,6 @@
   <?php
   include('includes/header.php');
 
-  // learn from w3schools.com
-  // Unset all the server side variables
-
   include('includes/connection.php');
 
   session_start();
